@@ -10,6 +10,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import MenuIcon from '@mui/icons-material/Menu';
 
 function Sidenav() {
+    console.log("Sidenav");
   return (
     <div className="sidenav">
         <img 
