@@ -8,6 +8,7 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
 function Post() {
+    console.log("Post");
   return (
     <div className="post">
         <div className="post__header">
