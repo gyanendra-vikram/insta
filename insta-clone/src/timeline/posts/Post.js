@@ -7,19 +7,18 @@ import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutline
 import TelegramIcon from '@mui/icons-material/Telegram';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
-function Post() {
+function Post({ user, postImage, likes, timestamp }) {
     console.log("Post");
   return (
     <div className="post">
         <div className="post__header">
             <div className="post__headerAuthor">
-                <Avatar>G</Avatar>
-                 gyanendra_vikram_ • <span>20h</span>
+                <Avatar>{user.charAt(0).toUpperCase()}</Avatar> {user} • <span>{timestamp}</span>
             </div>
             <MoreHorzIcon />
         </div>
         <div className="post__image">
-            <img src="https://pixlr.com/images/generator/text-to-image.webp"
+            <img src={postImage}
             alt="" 
             />
         </div>
@@ -34,7 +33,7 @@ function Post() {
                     <BookmarkBorderIcon className="postIcon" />
                 </div>
             </div>
-            15,336 likes
+            {likes} likes
         </div>
     </div>
   )
