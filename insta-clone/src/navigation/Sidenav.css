@@ -1,48 +1,126 @@
 .sidenav {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 0;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 0;
 }
 
 .sidenav__logo {
-    width: 120px;
-    margin: 25px;
+  width: 100px;
+  margin: 30px;
 }
 
 .sidenav__buttons {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.sidenav__button{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    color: white;
-    background-color: black;
-    border: 0;
-    margin: 5px 10px 5px 10px;
-    padding: 10px 15px 10px 15px;
-    border-radius: 15px;
-    width: 100%;
+.sidenav__button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  background-color: black;
+  border: 0;
+  margin: 5px 10px 5px 10px;
+  padding: 10px 15px 10px 15px;
+  border-radius: 15px;
+  width: 100%;
 }
 
 .sidenav__button:hover {
-    /* transform: scale(1.05);
+  /* transform: scale(1.05);
     transition: transform 0.2s; */
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .sidenav__button > span {
-    font-size: 15px;
-    font-weight: bold;
-    margin-left: 10px;
+  font-size: 15px;
+  /* font-weight: bold; */
+  margin-left: 8px;
 }
 
 .sidenav__more {
-    position: fixed;
-    bottom: 3px;
+  position: fixed;
+  bottom: 3px;
+}
+
+/* .sidenav__more {
+    position: relative;
+  } */
+
+.sidenav__popup {
+  position: absolute;
+  bottom: 55px;
+  margin-left: 10px;
+  background-color: #292929;
+  border-radius: 15px;
+  padding: 0;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 250px;
+  height: 440px;
+}
+
+.popup__button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  margin-left: 10px;
+  margin-top: 5px;
+  background: none;
+  border: none;
+  color: rgba(245, 245, 245);
+  cursor: pointer;
+  text-align: left;
+}
+
+.popup__button:hover {
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.thread {
+  font-size: 25px;
+}
+.popup__button span {
+  margin-left: 10px;
+  font-size: 15px;
+}
+.account__button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  margin-left: 10px;
+  margin-top: 5px;
+  background: none;
+  border: none;
+  color: rgba(245, 245, 245);
+  cursor: pointer;
+  text-align: left;
+  font-size: medium;
+}
+
+.account__button:hover {
+  width: 90%;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.popup__divider {
+  border: 0;
+  height: 5px;
+  background-color: #3a3a3a;
+  margin: 8px 0;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: #3a3a3a;
+  margin: 8px 0;
 }

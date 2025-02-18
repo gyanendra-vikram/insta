@@ -3,9 +3,9 @@
 }
 
 .homepage__nav {
-    width: 210px; 
-    padding: 16px;
-    border-right: 0.6px solid rgba(128, 128, 128, 0.310)
+    width: 220px;
+    padding: 10px;
+    border-right: 0.6px solid rgba(128, 128, 128, 0.310);
 }
 
 .homepage__timeline {

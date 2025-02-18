@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import './Timeline.css';
-import Suggestions from './Suggestions';
-import Post from './posts/Post';
-
+import React, { useState } from "react";
+import "./Timeline.css";
+import Suggestions from "./Suggestions";
+import Post from "./posts/Post";
+import sample from "./WhatsApp Image 2025-02-16 at 22.35.04_8d135441.jpg";
 function Timeline() {
   const [posts, setPosts] = useState([
     {
       user: "gyanendra_vikram_",
-      postImage:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+      postImage: sample,
       likes: 104,
       timestamp: "12h",
     },
     {
-      user: "anjali_pandey",
+      user: "prachi_tolani",
       postImage:
         "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80",
       likes: 432,
@@ -36,23 +35,23 @@ function Timeline() {
   ]);
   return (
     <div className="timeline">
-        <div className="timeline__left">
-            <div className="timeline_posts">
-                {posts.map((post) => (
-                    <Post
-                        user={post.user}
-                        postImage={post.postImage}
-                        likes={post.likes}
-                        timestamp={post.timestamp}
-                    />
-                ))}
-            </div>
+      <div className="timeline__left">
+        <div className="timeline_posts">
+          {posts.map((post) => (
+            <Post
+              user={post.user}
+              postImage={post.postImage}
+              likes={post.likes}
+              timestamp={post.timestamp}
+            />
+          ))}
         </div>
-        <div className="timeline__right">
-            <Suggestions />
-        </div>
+      </div>
+      <div className="timeline__right">
+        <Suggestions />
+      </div>
     </div>
-  )
+  );
 }
 
-export default Timeline
+export default Timeline;
