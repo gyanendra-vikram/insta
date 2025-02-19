@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./Timeline.css";
 import Suggestions from "./Suggestions";
 import Post from "./posts/Post";
+import Stories from "./stories/Stories";
 import sample from "./WhatsApp Image 2025-02-16 at 22.35.04_8d135441.jpg";
+
 function Timeline() {
   const [posts, setPosts] = useState([
     {
@@ -36,6 +38,7 @@ function Timeline() {
   return (
     <div className="timeline">
       <div className="timeline__left">
+        <Stories />
         <div className="timeline_posts">
           {posts.map((post) => (
             <Post
