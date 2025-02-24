@@ -11,14 +11,48 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import BookmarkBorderTwoToneIcon from "@mui/icons-material/BookmarkBorderTwoTone";
-import { MessageSquareWarning } from "lucide-react";
-import { SquareActivity } from "lucide-react";
-import { Moon } from "lucide-react";
+import { MessageSquareWarning, SquareActivity, Moon, Sun, ChevronLeft } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThreads } from "@fortawesome/free-brands-svg-icons";
 
 function Sidenav() {
-  const [showPopup, setShowPopup] = useState(false);
+  const [activePopup, setActivePopup] = useState(null);
+  const [darkMode, setDarkMode] = useState(() => {
+    return JSON.parse(localStorage.getItem("darkMode")) || false;
+  });
+
+  const morePopupRef = React.useRef(null);
+  const appearancePopupRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        (morePopupRef.current && morePopupRef.current.contains(event.target)) ||
+        (appearancePopupRef.current &&
+          appearancePopupRef.current.contains(event.target))
+      ) {
+        return;
+      }
+
+      setActivePopup(null);
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+    console.log(darkMode);
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
 
   return (
     <div className="sidenav">
@@ -61,15 +95,15 @@ function Sidenav() {
       <div className="sidenav__more">
         <button
           className="sidenav__button"
-          onClick={() => setShowPopup(!showPopup)}
+          onClick={() => setActivePopup(activePopup === "more" ? null : "more")}
         >
           <MenuIcon />
           <span>More</span>
         </button>
 
-        {/* Pop-up Menu */}
-        {showPopup && (
-          <div className="sidenav__popup">
+        {/* More Pop-up */}
+        {activePopup === "more" && (
+          <div className="sidenav__popup" ref={morePopupRef}>
             <button className="popup__button">
               <SettingsIcon />
               <span>Settings</span>
@@ -82,7 +116,10 @@ function Sidenav() {
               <BookmarkBorderTwoToneIcon />
               <span>Saved</span>
             </button>
-            <button className="popup__button">
+            <button
+              className="popup__button"
+              onClick={() => setActivePopup("appearance")} // Show appearance popup
+            >
               <Moon />
               <span>Switch appearance</span>
             </button>
@@ -109,6 +146,37 @@ function Sidenav() {
               <LogoutIcon />
               <span>Log out</span>
             </button>
+          </div>
+        )}
+
+        {/* Appearance Pop-up (Replaces "More" popup) */}
+        {activePopup === "appearance" && (
+          <div className="appearance__popup" ref={appearancePopupRef}>
+            <div className="appearance-popup-header">
+              <button
+                className="back-button"
+                onClick={() => setActivePopup("more")}
+              >
+                <ChevronLeft />
+              </button>
+              <h3>Switch appearance</h3>
+              {darkMode ? (
+                <Sun className="header-icon" />
+              ) : (
+                <Moon className="header-icon" />
+              )}
+            </div>
+            <div className="appearance-popup-body">
+              <span>Dark mode</span>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={darkMode}
+                  onChange={() => setDarkMode(!darkMode)}
+                />
+                <span className="slider round"></span>
+              </label>
+            </div>
           </div>
         )}
       </div>

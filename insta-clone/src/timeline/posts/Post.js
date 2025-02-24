@@ -9,15 +9,27 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-function Post({ user, postImage, likes, timestamp }) {
+function Post({ user, postImage, likes, timestamp, caption }) {
   const [isLiked, setIsLiked] = React.useState(false);
   const [isSaved, setIsSaved] = React.useState(false);
+  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [comments, setComments] = React.useState([]);
+  const [commentText, setCommentText] = React.useState("");
+
+  const MAX_LENGTH = 50;
 
   const handleLike = () => {
     setIsLiked(!isLiked);
   };
   const handleSave = () => {
     setIsSaved(!isSaved);
+  };
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    if (commentText.trim()) {
+      setComments([...comments, commentText]);
+      setCommentText("");
+    }
   };
   return (
     <div className="post">
@@ -59,7 +71,48 @@ function Post({ user, postImage, likes, timestamp }) {
             )}
           </div>
         </div>
-        {likes} likes
+        <strong>{likes} likes</strong>
+        <div className={`post__caption ${isExpanded ? "expanded" : ""}`}>
+          <strong>{user}</strong>{" "}
+          {isExpanded
+            ? caption
+            : `${caption.slice(0, MAX_LENGTH)}${
+                caption.length > MAX_LENGTH ? "..." : ""
+              }`}
+          {caption.length > MAX_LENGTH && (
+            <span
+              className="showMore"
+              onClick={() => setIsExpanded(!isExpanded)}
+            >
+              {isExpanded ? " Show less" : "more"}
+            </span>
+          )}
+        </div>
+
+        {/* Comments Section */}
+        <div className="post__comments">
+          {comments.map((comment, index) => (
+            <p key={index}>
+              <strong>{user}:</strong> {comment}
+            </p>
+          ))}
+        </div>
+
+        {/* Comment Input */}
+        <form className="post__commentBox" onSubmit={handleCommentSubmit}>
+          <input
+            className="post__input"
+            type="text"
+            placeholder="Add a comment..."
+            value={commentText}
+            onChange={(e) => setCommentText(e.target.value)}
+          />
+          {commentText.trim() && (
+            <button className="post__button" type="submit">
+              Post
+            </button>
+          )}
+        </form>
       </div>
     </div>
   );

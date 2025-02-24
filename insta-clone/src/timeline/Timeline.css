@@ -10,3 +10,10 @@
 .timeline__right {
     flex: 0.3;
 }
+
+.post__divider {
+    border: 0;
+    height: 0.3px;
+    background-color: #3a3a3c;
+    margin: 0 200px 0px 175px;
+  }
