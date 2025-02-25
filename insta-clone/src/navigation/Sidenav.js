@@ -14,6 +14,8 @@ import BookmarkBorderTwoToneIcon from "@mui/icons-material/BookmarkBorderTwoTone
 import { MessageSquareWarning, SquareActivity, Moon, Sun, ChevronLeft } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThreads } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Sidenav() {
   const [activePopup, setActivePopup] = useState(null);
@@ -23,6 +25,12 @@ function Sidenav() {
 
   const morePopupRef = React.useRef(null);
   const appearancePopupRef = React.useRef(null);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/login");
+  };
 
   React.useEffect(() => {
     const handleClickOutside = (event) => {
@@ -142,7 +150,7 @@ function Sidenav() {
 
             <hr className="divider" />
 
-            <button className="popup__button">
+            <button className="popup__button" onClick={handleLogout}>
               <LogoutIcon />
               <span>Log out</span>
             </button>
